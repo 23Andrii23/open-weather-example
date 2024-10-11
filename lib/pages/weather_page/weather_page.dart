@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:weather_app/pages/main_page/controller/main_page.controller.dart';
-import 'package:weather_app/pages/main_page/widgets/gradient_weather_card.dart';
-import 'package:weather_app/pages/main_page/widgets/hourly_weather.dart';
+import 'package:weather_app/pages/weather_page/controller/weather_page.controller.dart';
+import 'package:weather_app/pages/weather_page/widgets/gradient_weather_card.dart';
+import 'package:weather_app/pages/weather_page/widgets/hourly_weather.dart';
 
-class WeatherScreen extends ConsumerWidget {
-  const WeatherScreen({super.key});
+class WeatherPage extends ConsumerWidget {
+  const WeatherPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final weather = ref.watch(mainControllerProvider);
+    final weather = ref.watch(weatherPageControllerProvider);
     return weather.when(
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (error, _) => Center(child: Text(error.toString())),
@@ -40,7 +40,7 @@ class WeatherScreen extends ConsumerWidget {
 
   Widget _buildMainWeatherCard(
     BuildContext context,
-    MainControllerState? state,
+    WeatherControllerState? state,
     WidgetRef ref,
   ) {
     if (state == null) {
@@ -121,7 +121,8 @@ class WeatherScreen extends ConsumerWidget {
                               TextButton(
                                 onPressed: () {
                                   ref
-                                      .read(mainControllerProvider.notifier)
+                                      .read(weatherPageControllerProvider
+                                          .notifier)
                                       .changeCity(cityName);
                                   Navigator.pop(context);
                                 },
@@ -144,7 +145,7 @@ class WeatherScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildWeatherInfoCards(MainControllerState? state) {
+  Widget _buildWeatherInfoCards(WeatherControllerState? state) {
     if (state == null) {
       return const Center(child: CircularProgressIndicator());
     }

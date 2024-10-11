@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:weather_app/pages/main_page/main_page.dart';
+import 'package:weather_app/pages/weather_page/weather_page.dart';
 
 void main() {
   runApp(
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Weather App',
       theme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
-      home: const WeatherScreen(),
+      home: const WeatherPage(),
     );
   }
 }

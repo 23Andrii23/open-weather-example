@@ -6,24 +6,24 @@ import 'package:weather_app/models/weather_model/weather_model.dart';
 
 import 'package:weather_app/service/service.dart';
 
-part 'main_page.controller.freezed.dart';
-part 'main_page.controller.g.dart';
+part 'weather_page.controller.freezed.dart';
+part 'weather_page.controller.g.dart';
 
 @freezed
-class MainControllerState with _$MainControllerState {
-  factory MainControllerState({
+class WeatherControllerState with _$WeatherControllerState {
+  factory WeatherControllerState({
     required WeatherResponse? weather,
     required WeatherForecast? forecast,
-  }) = _MainControllerState;
+  }) = _WeatherControllerState;
 }
 
 @riverpod
-class MainController extends _$MainController {
+class WeatherPageController extends _$WeatherPageController {
   final _weatherService = WeatherService();
   final _locationHandler = LocationHandler();
 
   @override
-  FutureOr<MainControllerState?> build() async {
+  FutureOr<WeatherControllerState?> build() async {
     state = const AsyncLoading();
     final currentPosition = await _locationHandler.getCurrentPosition();
     final city = currentPosition == null ? 'London' : null;
@@ -38,7 +38,7 @@ class MainController extends _$MainController {
       lon: currentPosition?.longitude,
       city: city,
     );
-    final value = MainControllerState(
+    final value = WeatherControllerState(
       weather: weather,
       forecast: forecast,
     );
@@ -50,7 +50,7 @@ class MainController extends _$MainController {
     state = const AsyncLoading();
     final weather = await _weatherService.fetchWeather(city: city);
     final forecast = await _weatherService.forecastWeather(city: city);
-    final value = MainControllerState(
+    final value = WeatherControllerState(
       weather: weather,
       forecast: forecast,
     );
