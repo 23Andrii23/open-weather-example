@@ -1,16 +1,22 @@
-# weather_app
+# Flutter Weather App Example
 
-A new Flutter project.
+An example Flutter weather app using the [OpenWeatherMap API](https://openweathermap.org/api).
 
-## Getting Started
+## Demo
+![Demo](demo_weather.gif)
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Supported Features
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- [x] Current weather (condition and temperature)
+- [x] 5-day weather forecast
+- [x] Search by city
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## Packages in use
+
+- [riverpod](https://pub.dev/packages/riverpod) for state management
+- [freezed](https://pub.dev/packages/freezed) for code generation
+- [http](https://pub.dev/packages/http) for talking to the REST API
+- [cached_network_image](https://pub.dev/packages/cached_network_image) for caching images
+
